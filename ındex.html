@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Final Projesi - Şenol Kara</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        
+        body { 
+            background-color: #0f172a; 
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96)),
+                url('https://www.transparenttextures.com/patterns/mathematical-formulas.png');
+            color: #cbd5e1; 
+            line-height: 1.8;
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: rgba(15, 23, 42, 0.85);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #3b82f6;
+        }
+        nav h2 { color: #3b82f6; font-size: 1.2rem; letter-spacing: 1px; }
+        nav ul { list-style: none; display: flex; }
+        nav ul li a { color: #94a3b8; text-decoration: none; font-weight: bold; margin-left: 20px; font-size: 0.9rem; transition: 0.3s; }
+        nav ul li a:hover { color: #3b82f6; }
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .hero h1 { font-size: 3.5rem; color: #f8fafc; text-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+        .hero p { font-size: 1.4rem; color: #3b82f6; margin-top: 10px; font-weight: 300; border-top: 1px solid #3b82f6; padding-top: 10px; }
+
+        .container { max-width: 900px; margin: -50px auto 50px auto; padding: 0 20px; }
+
+        .article-card {
+            background: rgba(30, 41, 59, 0.85);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: 0.4s;
+            text-align: justify;
+        }
+        .article-card:hover { border-color: #3b82f6; }
+
+        .article-card h2 {
+            color: #3b82f6;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        /* VİDEO BÖLÜMÜ */
+        .video-section {
+            background: rgba(30, 41, 59, 0.9);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid #ff0000;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+        }
+
+        .video-btn {
+            background: #ff0000;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .video-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center; align-items: center;
+        }
+
+        .modal-content { width: 90%; max-width: 900px; position: relative; }
+        .close-btn { position: absolute; top: -50px; right: 0; color: white; font-size: 40px; cursor: pointer; }
+
+        .about-box {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 40px;
+            border-radius: 24px;
+            border: 2px solid #3b82f6;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-info h3 { color: #3b82f6; margin-bottom: 15px; font-size: 1.6rem; }
+        footer { text-align: center; padding: 4rem; color: #475569; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>ŞENOL KARA</h2>
+        <ul>
+            <li><a href="#hakkimda">HAKKIMDA</a></li>
+            <li><a href="#video">SUNUM VİDEOSU</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1>Matematik Final Projesi</h1>
+        <p>Matematik, doğru düşünmenin ve etkili çözüm üretmenin temelidir.</p>
+    </div>
+
+    <div class="container">
+        <div class="article-card">
+            <h2>Matematik Nedir?</h2>
+            <p>Matematik, çoğu zaman dar bir kalıba sıkıştırılarak yalnızca sayılarla yapılan işlemler veya ezberlenen formüller bütünü olarak algılanır. Oysa matematik, bu teknik sınırların çok ötesinde, evrenin işleyişini anlamlandırmamızı sağlayan temel bir "mantık grameri" ve doğanın kendi dilidir. Bir kar tanesindeki mikroskobik simetriden, gök cisimlerinin devasa yörüngelerine kadar doğada gözlemlediğimiz her dengenin temelinde, matematiğin soyutlama gücü yatar. Bu bağlamda matematik, aslında karmaşanın ortasındaki o ince düzeni ve gizli kalıpları fark edebilme sanatıdır.<br><br>Bilimsel bir disiplin olarak matematik; şekil, miktar ve düzen arasındaki ilişkileri sistematik bir tutarlılıkla inceler. Ancak matematik eğitiminin asıl gayesi, bireye sadece teknik bilgi aktarmak değil; ona günlük hayatta ve bilimsel çalışmalarda rehberlik edecek bir zihinsel disiplin kazandırmaktır. Bu disiplin süreci, bireyin doğru düşünme, rasyonel akıl yürütme ve karmaşık problemleri sentezleyerek çözme becerilerini geliştirir. Sonuç olarak matematik, bize dünyayı sadece izlemeyi değil, onu daha derinlikli ve analitik bir bakış açısıyla kavramayı öğreten entelektüel bir pusuladır.</p>
+        </div>
+
+        <div class="article-card">
+            <h2>Matematik Nasıl Doğmuştur?</h2>
+            <p>Matematiğin doğuşu, sanılanın aksine teorik bir meraktan ziyade, insanlığın hayatta kalma ve dünyayı anlamlandırma çabasına dayanır. İlk topluluklar; sürülerindeki hayvanları saymak, tarımsal döngüleri takip etmek ve ticarette adaleti sağlamak gibi tamamen somut ihtiyaçlar üzerinden matematiksel düşüncenin temellerini atmışlardır. Bu yönüyle matematik, laboratuvarlarda değil, tarlada ve çarşıda, doğrudan yaşamın merkezinde şekillenmiştir. Örneğin; Nil’in taşkınları sonrası mülkiyet sınırlarını korumaya çalışan Mısırlıların geometriye sarılması veya ticari trafiği yöneten Sümerlerin sayı sistemlerini inşa etmesi, matematiğin pratik bir çözüm aracı olarak doğduğunun en somut kanıtlarıdır.<br><br>Medeniyetlerin yükselişinde matematik, her zaman bir kaldıraç görevi görmüştür. Yazının icadından çok daha önceleri bile var olan bu sayısal bilinç, Antik Mezopotamya’dan Maya takvimlerine, Çin’in hesaplama tekniklerinden Orta Amerika’nın astronomik gözlemlerine kadar her coğrafyada farklı renklerle karşımıza çıkar. Özellikle Hint matematiğinde filizlenen "sıfır" kavramı, sadece bir rakam değil, matematik tarihindeki en büyük düşünsel devrimlerden biri olarak evrensel bir miras haline gelmiştir.<br><br>Ancak matematiğin "bilimlerin dili" olma niteliğini kazanması, Antik Yunan dönemindeki zihinsel dönüşümle gerçekleşmiştir. Bu dönemde matematik, günlük pratiklerin dar kalıplarından sıyrılarak soyut bir düşünce sistemine evrilmiştir. Aksiyomatik yaklaşımın ve ispat metodunun devreye girmesiyle matematik, sarsılmaz bir mantık kalesine dönüşmüştür. Öklid’in Elementler eseriyle zirveye ulaşan bu süreç, matematiği sadece hesap yapan bir araç olmaktan çıkarıp, evrensel doğruları arayan tutarlı ve sistematik bir disiplin haline getirmiştir.</p>
+        </div>
+
+        <div class="article-card">
+            <h2>Diğer Bilimlerden Farkı Nedir?</h2>
+            <p>Matematiği diğer temel bilimlerden ayıran en temel fark, aslında onun "mutfağında" yatar. Fizik, kimya veya biyoloji gibi alanlarda bilgi; laboratuvarlarda yapılan deneylere, teleskopla yapılan gözlemlere ve elde edilen verilere dayanır. Bu yüzden doğa bilimlerinde kurallar zamanla değişebilir; yeni bir keşif, eski bir teoriyi yerle bir edebilir. Ancak matematik, dış dünyaya ihtiyaç duymadan, tamamen saf düşünce ve sarsılmaz bir mantık zinciriyle ilerler. Matematikte bir teoremi ispatladığınızda, o artık evrensel ve zamandan bağımsız bir gerçeklik kazanır. Bugün Pisagor Teoremi’ni hala aynı kesinlikle kullanıyor olmamızın sebebi, matematiğin bu "yanılmaz" ve yüzyıllara meydan okuyan doğasıdır.<br><br>Tarihsel sürece baktığımızda, bu muazzam bilgi mirasının farklı medeniyetlerin omuzlarında yükseldiğini görüyoruz. Özellikle Orta Çağ'da, Batı'nın durakladığı bir dönemde İslam dünyasındaki bilim insanları matematiği adeta yeniden tanımlamıştır. 9. yüzyılda Harizmî’nin cebiri bağımsız bir disiplin haline getirmesi, sadece bir hesaplama yöntemi değil; bugün kullandığımız dijital dünyanın kalbi olan "algoritma" kavramının da tohumlarını atmıştır.<br><br>Avrupa’da ise bu birikim, Rönesans ile birlikte büyük bir zihinsel patlamaya dönüşmüştür. Descartes’ın analitik geometriyi kurmasıyla sayılar ve şekiller birbiriyle konuşmaya başlamış; Pascal ve Fermat ise şans dediğimiz o belirsiz kavramı "olasılık kuramı" ile matematiksel bir zemine oturtmuştur. Ancak asıl kırılma noktası 17. yüzyıldır. Newton ve Leibniz’in geliştirdiği kalkülüs, insanlığa hareketin ve değişimin formülünü vermiştir.</p>
+        </div>
+
+        <div class="article-card">
+            <h2>Günlük Hayat Problemlerine İhtiyaç Var mı?</h2>
+            <p>Matematiğin doğası gereği oldukça soyut bir disiplin olduğu su götürmez bir gerçektir. Ancak bu soyutluğu kavrayabilmek için "somut bir kalkış noktasına" ihtiyaç duyup duymadığımız sorusu, aslında öğrenme psikolojisiyle doğrudan ilişkilidir. Kendi adıma, matematiği gerçekten özümsemenin yolunun başlangıçta günlük hayat problemleriyle kurulan bağdan geçtiğine inanıyorum.<br><br>İlk olarak, insan zihni anlamlandırmadığı bilgiyi depolamakta direnç gösterir. Soyut bir formül, zihnimizde boşlukta asılı kalan bir veri gibidir. Fakat bu formülü; bir mimari yapının dayanıklılığını hesaplamak, bir yatırımın gelecekteki değerini öngörmek ya da doğadaki bir simetriyi açıklamak için kullandığımızda, o bilgi bir "bağlam" kazanır. Günlük hayat problemleri, matematiğin sadece kağıt üzerinde bir bulmaca değil, dünyayı yöneten gizli bir mekanizma olduğunu fark etmemizi sağlar.<br><br>İkinci olarak, matematiksel düşünme dediğimiz yeti, aslında bir problem çözme refleksidir. Hayatın içinden gelen karmaşık durumlar; veriyi ayıklama, mantıklı bir strateji kurma ve sonuca ulaşma gibi süreçleri içerir. Eğer biz matematiği sadece steril ders kitabı örnekleri üzerinden öğrenirsek, onu gerçek hayatın değişken yapısına uyarlamakta zorluk çekeriz. Oysa bir bütçe planlaması yaparken ya da bir lojistik problemini çözerken matematik kullandığımızda, bu disiplin bizim için bir "ezber yığını" olmaktan çıkıp bir "yaşam becerisine" dönüşür.<br><br>Son olarak, her ne kadar ileri seviye matematik tamamen soyut bir düzlemde ilerlese de, o derin sulara dalabilmek için önce kıyıda, yani bildiğimiz dünyanın tanıdık sularında yüzmeyi öğrenmemiz gerekir. Somut örnekler, soyut düşünceye giden yolu inşa eden basamaklardır. Bu basamaklar ne kadar sağlam olursa, karmaşık teorileri kavramak da o kadar kolaylaşır.</p>
+        </div>
+
+        <div id="video" class="video-section">
+            <h2 style="color: #f8fafc;">Sunum ve Röportaj Videosu</h2>
+            <p style="margin-top: 10px;">Öğrencilere ve dışarıdaki insanlara bu soruları sorduğum videoyu izleyebilirsiniz. </p>
+            <button class="video-btn" onclick="openModal()">
+                <span>▶</span> PROJE VİDEOSUNU İZLE
+            </button>
+        </div>
+
+        <div id="hakkimda" class="about-box">
+            <div style="font-size: 4rem;">🎓</div>
+            <div class="about-info">
+                <h3>Şenol Kara</h3>
+                <p><strong>Bölüm:</strong> Bilgisayar Programcılığı</p>
+                <p><strong>Okul No:</strong> 256502048</p>
+                <p><strong>Durum:</strong> 1. Sınıf Öğrencisiyim</p>
+            </div>
+        </div>
+
+        <footer>&copy; 2025 Şenol Kara | Matematik Final Projesi</footer>
+    </div>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: 15px;">
+                <iframe id="ytVideo" style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+                    src="https://www.youtube.com/embed/YOUTUBE_ID_BURAYA" 
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById("videoModal").style.display = "flex"; }
+        function closeModal() {
+            document.getElementById("videoModal").style.display = "none";
+            var iframe = document.getElementById("ytVideo");
+            var src = iframe.src; iframe.src = src; // Videoyu durdur
+        }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("videoModal")) { closeModal(); }
+        }
+    </script>
+
+</body>
+</html>
