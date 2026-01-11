@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Final Projesi | Şenol Kara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-paper: #fdfcf8; 
+            --text-main: #1a1a1a;
+            --accent: #2d4a22; 
+            --border: #e0ddd5;
+            --white: #ffffff;
+            --shadow-color: rgba(45, 74, 34, 0.2);
+            --link-hover: #4a7c37;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: #fdfcf8;
+        }
+
+        nav {
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        header {
+            text-align: center;
+            padding: 150px 20px;
+        }
+
+        header h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(3rem, 10vw, 5rem); 
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        header p {
+            font-style: italic;
+            color: var(--accent);
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.94);
+            padding: 50px;
+            margin-bottom: 60px;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 15px 15px 0px var(--shadow-color);
+        }
+
+        h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        p { margin-bottom: 20px; text-align: justify; font-size: 1.05rem; color: #333; }
+
+        .ref-link { color: var(--accent); text-decoration: none; font-weight: 600; border-bottom: 2px solid transparent; transition: 0.3s; }
+        .ref-link:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
+
+        .profile-box { background: #1a1a1a; color: #fdfcf8; border: none; }
+        .info-row { display: flex; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .label { width: 150px; font-weight: 600; color: #7cb342; }
+
+        footer { text-align: center; padding: 80px; color: #777; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <a href="#nedir">Tanım</a>
+        <a href="#dogus">Doğuşu</a>
+        <a href="#fark">Farkı</a>
+        <a href="#ihtiyac">İhtiyaç</a>
+        <a href="#kaynakca">Kaynakça</a>
+        <a href="#hakkimda">Hakkımda</a>
+    </nav>
+
+    <header>
+        <h1>Matematik Final Projesi</h1>
+        <p>Matematik, doğru düşünmenin ve etkili çözüm üretmenin temelidir.</p>
+    </header>
+
+    <div class="content-wrapper">
+        
+        <section id="nedir">
+            <h2>Matematik Nedir?</h2>
+            <p>Matematik, çoğu zaman dar bir kalıba sıkıştırılarak yalnızca sayılarla yapılan işlemler veya ezberlenen formüller bütünü olarak algılanır. Oysa matematik, bu teknik sınırların çok ötesinde, evrenin işleyişini anlamlandırmamızı sağlayan temel bir "mantık grameri" ve doğanın kendi dilidir. Bir kar tanesindeki mikroskobik simetriden, gök cisimlerinin devasa yörüngelerine kadar doğada gözlemlediğimiz her dengenin temelinde, matematiğin soyutlama gücü yatar. Bu bağlamda matematik, aslında karmaşanın ortasındaki o ince düzeni ve gizli kalıpları fark edebilme sanatıdır.</p>
+            <p>Bilimsel bir disiplin olarak matematik; şekil, miktar ve düzen arasındaki ilişkileri sistematik bir tutarlılıkla inceler. Ancak matematik eğitiminin asıl gayesi, bireye sadece teknik bilgi aktarmak değil; ona günlük hayatta ve bilimsel çalışmalarda rehberlik edecek bir zihinsel disiplin kazandırmaktır. Bu disiplin süreci, bireyin doğru düşünme, rasyonel akıl yürütme ve karmaşık problemleri sentezleyerek çözme becerilerini geliştirir. Sonucu olarak matematik, bize dünyayı sadece izlemeyi değil, onu daha derinlikli ve analitik bir bakış açısıyla kavramayı öğreten entelektüel bir pusuladır.</p>
+        </section>
+
+        <section id="dogus">
+            <h2>Matematiğin Doğuşu</h2>
+            <p>Matematiğin doğuşu, sanılanın aksine teorik bir meraktan ziyade, insanlığın hayatta kalma ve dünyayı anlamlandırma çabasına dayanır. İlk topluluklar; sürülerindeki hayvanları saymak, tarımsal döngüleri takip etmek ve ticarette adaleti sağlamak gibi tamamen somut ihtiyaçlar üzerinden matematiksel düşüncenin temellerini atmışlardır. Bu yönüyle matematik, laboratuvarlarda değil, tarlada ve çarşıda, doğrudan yaşamın merkezinde şekillenmiştir. Örneğin; Nil’in taşkınları sonrası mülkiyet sınırlarını korumaya çalışan Mısırlıların geometriye sarılması veya ticari trafiği yöneten Sümerlerin sayı sistemlerini inşa etmesi, matematiğin pratik bir çözüm aracı olarak doğduğunun en somut kanıtlarıdır.</p>
+            <p>Medeniyetlerin yükselişinde matematik, her zaman bir kaldıraç görevi görmüştür. Yazının icadından çok daha önceleri bile var olan bu sayısal bilinç, Antik Mezopotamya’dan Maya takvimlerine, Çin’in hesaplama tekniklerinden Orta Amerika’nın astronomik gözlemlerine kadar her coğrafyada farklı renklerle karşımıza çıkar. Özellikle Hint matematiğinde filizlenen "sıfır" kavramı, sadece bir rakam değil, matematik tarihindeki en büyük düşünsel devrimlerden biri olarak evrensel bir miras haline gelmiştir.</p>
+        </section>
+
+        <section id="fark">
+            <h2>Diğer Bilimlerden Farkı Nedir?</h2>
+            <p>Matematiği diğer temel bilimlerden ayıran en temel fark, aslında onun "mutfağında" yatar. Fizik, kimya veya biyoloji gibi alanlarda bilgi; laboratuvarlarda yapılan deneylere, teleskopla yapılan gözlemlere ve elde edilen verilere dayanır. Bu yüzden doğa bilimlerinde kurallar zamanla değişebilir; yeni bir keşif, eski bir teoriyi yerle bir edebilir. Ancak matematik, dış dünyaya ihtiyaç duymadan, tamamen saf düşünce ve sarsılmaz bir mantık zinciriyle ilerler. Matematiikte bir teoremi ispatladığınızda, o artık evrensel ve zamandan bağımsız bir gerçeklik kazanır. Bugün Pisagor Teoremi’ni hala aynı kesinlikle kullanıyor olmamızın sebebi, matematiğin bu "yanılmaz" ve yüzyıllara meydan okuyan doğasıdır.</p>
+            <p>Tarihsel sürece baktığımızda, bu muazzam bilgi mirasının farklı medeniyetlerin omuzlarında yükseldiğini görüyoruz. Özellikle Orta Çağ'da, Batı'nın durakladığı bir dönemde İslam dünyasındaki bilim insanları matematiği adeta yeniden tanımlamıştır. 9. yüzyılda Harizmî’nin cebiri bağımsız bir disiplin haline getirmesi, sadece bir hesaplama yöntemi değil; bugün kullandığımız dijital dünyanın kalbi olan "algoritma" kavramının da tohumlarını atmıştır.</p>
+        </section>
+
+        <section id="ihtiyac">
+            <h2>Günlük Hayat Problemlerine İhtiyaç Var mı?</h2>
+            <p>Matematiğin doğası gereği oldukça soyut bir disiplin olduğu su götürmez bir gerçektir. Ancak bu soyutluğu kavrayabilmek için "somut bir kalkış noktasına" ihtiyaç duyup duymadığımız sorusu, aslında öğrenme psikolojisiyle doğrudan ilişkilidir. Kendi adıma, matematiği gerçekten özümsemenin yolunun başlangıçta günlük hayat problemleriyle kurulan bağdan geçtiğine inanıyorum.</p>
+            <p>İlk olarak, insan zihni anlamlandırmadığı bilgiyi depolamakta direnç gösterir. Soyut bir formül, zihnimizde boşlukta asılı kalan bir veri gibidir. Fakat bu formülü; bir mimari yapının dayanıklılığını hesaplamak veya bir yatırımın gelekteki değerini öngörmek için kullandığımızda, o bilgi bir "bağlam" kazanır. Günlük hayat problemleri, matematiğin sadece kağıt üzerinde bir bulmaca değil, dünyayı yöneten gizli bir mekanizma olduğunu fark etmemizi sağlar.</p>
+        </section>
+
+        <section id="kaynakca">
+            <h2>Kaynakça</h2>
+            <p style="text-align: left; font-size: 0.9rem; line-height: 2.2;">
+                • <strong>Britannica</strong> - <a href="https://www.britannica.com/science/mathematics" target="_blank" class="ref-link">Mathematics: Definition & History</a><br>
+                • <strong>Scienopedia</strong> - <a href="https://scienopedia.com/what-is-mathematics/" target="_blank" class="ref-link">What is Mathematics? Meaning & Branches</a><br>
+                • <strong>Wikipedia (TR)</strong> - <a href="https://tr.wikipedia.org/wiki/Matematik" target="_blank" class="ref-link">Matematik Genel Tanımı</a><br>
+                • <strong>Wikipedia (TR)</strong> - <a href="https://tr.wikipedia.org/wiki/Matematik_tarihi" target="_blank" class="ref-link">Matematik Tarihi</a><br>
+                • <strong>Wikipedia (EN)</strong> - <a href="https://en.wikipedia.org/wiki/Philosophy_of_mathematics" target="_blank" class="ref-link">Philosophy of Mathematics</a><br>
+                • <strong>Freudenthal Institute</strong> - <a href="https://www.freudenthal-institute.nl/en/our-research/realistic-mathematics-education/" target="_blank" class="ref-link">Realistic Mathematics Education (RME)</a><br>
+                • <strong>NCTM</strong> - <a href="https://www.nctm.org/Standards-and-Positions/Principles-to-Actions/" target="_blank" class="ref-link">Principles to Actions: Mathematical Success</a>
+            </p>
+        </section>
+
+        <section id="hakkimda" class="profile-box">
+            <h2 style="color: white;">Hakkımda</h2>
+            <div class="info-row"><div class="label">AD SOYAD</div><div>Şenol Kara</div></div>
+            <div class="info-row"><div class="label">BÖLÜM</div><div>Bilgisayar Programcılığı</div></div>
+            <div class="info-row"><div class="label">OKUL NO</div><div>256502048</div></div>
+            
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2024 Şenol Kara | Matematik Final Projesi
+    </footer>
+<script>
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+
+
+  const SETTINGS = {
+    densityDivisor: 22000,
+    minShapes: 35,
+    maxShapes: 100,
+
+    particleCount: 50,
+    linkDistance: 170,
+
+    sizeMin: 12,
+    sizeMax: 42,
+
+
+    shapeSpeed: 0.34,
+    particleSpeed: 0.47,
+
+    shapeLineWidth: 1.1,
+    linkLineWidth: 0.6,
+  };
+
+
+  const PALETTE = [
+    [46, 204, 113],   // yeşil
+    [52, 152, 219],   // mavi
+    [155, 89, 182],   // mor
+    [241, 196, 15],   // sarı
+    [231, 76, 60],    // kırmızı
+    [26, 188, 156],   // turkuaz
+  ];
+
+  let shapes = [];
+  let particles = [];
+
+  const rand = (a, b) => Math.random() * (b - a) + a;
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    init(); // ekran değişince yoğunluğu yeniden hesapla
+  }
+  window.addEventListener('resize', resize);
+
+
+  function drawPolygon(sides, r) {
+    const step = (Math.PI * 2) / sides;
+    ctx.beginPath();
+    for (let i = 0; i < sides; i++) {
+      const x = Math.cos(i * step) * r;
+      const y = Math.sin(i * step) * r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+  }
+
+  function drawStar(points, outerR, innerR) {
+    const step = Math.PI / points;
+    ctx.beginPath();
+    for (let i = 0; i < points * 2; i++) {
+      const r = i % 2 === 0 ? outerR : innerR;
+      const a = i * step;
+      const x = Math.cos(a) * r;
+      const y = Math.sin(a) * r;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+  }
+
+
+  class Shape {
+    constructor() {
+      this.reset(true);
+    }
+
+    reset(initial = false) {
+      this.x = initial ? rand(0, canvas.width) : rand(-60, canvas.width + 60);
+      this.y = initial ? rand(0, canvas.height) : rand(-60, canvas.height + 60);
+
+      this.size = rand(SETTINGS.sizeMin, SETTINGS.sizeMax);
+      this.angle = rand(0, Math.PI * 2);
+
+
+      this.opacity = rand(0.25, 0.6);
+
+      this.rgb = pick(PALETTE);
+      this.type = pick(['triangle', 'circle', 'square', 'pentagon', 'hexagon', 'star']);
+
+      const sp = SETTINGS.shapeSpeed;
+      this.vx = rand(-sp, sp);
+      this.vy = rand(-sp, sp);
+
+      this.rotationSpeed = rand(-0.01, 0.01);
+
+    }
+
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+
+      ctx.lineWidth = SETTINGS.shapeLineWidth;
+      ctx.strokeStyle = `rgba(${this.rgb[0]},${this.rgb[1]},${this.rgb[2]},${this.opacity})`;
+
+      switch (this.type) {
+        case 'circle':
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size * 0.55, 0, Math.PI * 2);
+          ctx.closePath();
+          break;
+
+        case 'square': {
+          const s = this.size * 0.9;
+          ctx.beginPath();
+          ctx.rect(-s / 2, -s / 2, s, s);
+          ctx.closePath();
+          break;
+        }
+
+        case 'triangle':
+          drawPolygon(3, this.size * 0.85);
+          break;
+
+        case 'pentagon':
+          drawPolygon(5, this.size * 0.8);
+          break;
+
+        case 'hexagon':
+          drawPolygon(6, this.size * 0.75);
+          break;
+
+        case 'star':
+          drawStar(5, this.size * 0.7, this.size * 0.32);
+          break;
+      }
+
+      // İç dolgu yok
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.angle += this.rotationSpeed;
+
+      const p = 70;
+      if (this.x < -p) this.x = canvas.width + p;
+      if (this.x > canvas.width + p) this.x = -p;
+      if (this.y < -p) this.y = canvas.height + p;
+      if (this.y > canvas.height + p) this.y = -p;
+    }
+  }
+
+
+  class Particle {
+    constructor() {
+      this.x = rand(0, canvas.width);
+      this.y = rand(0, canvas.height);
+
+      const sp = SETTINGS.particleSpeed;
+      this.vx = rand(-sp, sp);
+      this.vy = rand(-sp, sp);
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+  }
+
+  function computeShapeCount() {
+    const area = canvas.width * canvas.height;
+    const n = Math.floor(area / SETTINGS.densityDivisor);
+    return clamp(n, SETTINGS.minShapes, SETTINGS.maxShapes);
+  }
+
+  function init() {
+    shapes = [];
+    particles = [];
+
+    const count = computeShapeCount();
+    for (let i = 0; i < count; i++) shapes.push(new Shape());
+    for (let i = 0; i < SETTINGS.particleCount; i++) particles.push(new Particle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Şekiller
+    for (const s of shapes) {
+      s.update();
+      s.draw();
+    }
+
+
+    ctx.lineWidth = SETTINGS.linkLineWidth;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p1 = particles[i];
+      p1.update();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+
+        if (d < SETTINGS.linkDistance) {
+          ctx.strokeStyle = `rgba(45, 74, 34, ${0.22 * (1 - d / SETTINGS.linkDistance)})`;
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // Başlat
+  resize();
+  init();
+  animate();
+</script>
+
+
+</body>
+</html>
